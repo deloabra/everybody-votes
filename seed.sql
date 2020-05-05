@@ -6,8 +6,10 @@ USE everybody_votes;
 CREATE TABLE question(
 	id INT NOT NULL AUTO_INCREMENT,
     question VARCHAR(500),
+    private BOOLEAN,
+    creator varchar(20),
     CreatedAt DATETIME DEFAULT current_timestamp,
-    ExpiresAt DATETIME DEFAULT current_timestamp,
+    ExpiresAt DATETIME DEFAULT NULL,
     PRIMARY KEY(id)
 );
 
