@@ -1,7 +1,7 @@
 import React from 'react';
 import './homepage.css';
 
-function App() {
+function homepage() {
   return (
     <div className="App">
       <header className="App-header">
@@ -11,7 +11,7 @@ function App() {
       <nav className="navbar navbar-expand-lg navbar-light bg-warning">
 
         {/* Add Home link to website name on navbar */}
-        <a className="navbar-brand" href="#">Everbody Votes</a>
+        <a className="navbar-brand" href="index.html">Everbody Votes</a>
 
         {/* create navbar toggler icon for small screens */}
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,8 +31,10 @@ function App() {
       </nav>
 
 
+
+
     </div>
   );
 }
 
-export default App;
+export default homepage;
