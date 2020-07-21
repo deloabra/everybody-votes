@@ -11,6 +11,9 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("build"));
 }
+else{
+    app.use(express.static("client"));
+}
 //define API routes here
 
 
