@@ -14,6 +14,13 @@ CREATE TABLE question(
     PRIMARY KEY(id)
 );
 
+CREATE TABLE answerchoice(
+    id INT NOT NULL AUTO_INCREMENT,
+    questionId INT NOT NULL,
+    choice varchar(200),
+    primary key(id)
+);
+
 CREATE TABLE vote(
 	id INT NOT NULL AUTO_INCREMENT,
     ip varchar(20),
