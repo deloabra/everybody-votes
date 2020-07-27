@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const PORT = process.env.PORT || 8080;
 const app = express();
+const orm = require("./config/orm.js");
 
 //middleware
 app.use(express.urlencoded({ extended: true }));
@@ -13,10 +14,10 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("build"));
 }
 //define API routes here
-
-//test api route
-app.get('/test', (req, res) => {
-    res.send("test");
+app.get('/question/:questionId', (req, res) => {
+    orm.getQuestionInfo(req.params.questionId, (result) => {
+        res.send(result);
+    });
 });
 
 //define send main page
