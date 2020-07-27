@@ -59,6 +59,39 @@ function Homepage() {
         </div>
       </nav>
 
+
+
+
+
+                    {/* Today's Question */}
+
+
+
+      <h2 className="text-center">Today's Question</h2>
+
+      {/* text in here needs to be decided by api call */}
+      <h3 className="text-center">Is a hotdog a sandwich?</h3>
+
+      {/* container for button answer choices */}
+      <div className="container">
+        <div className="row justify-content-center">
+          <button className="btn btn-warning m-2">test</button>
+          <button className="btn btn-warning m-2">test</button>
+          <button className="btn btn-warning m-2">test</button>
+          <button className="btn btn-warning m-2">test</button>
+          <button className="btn btn-warning m-2">test</button>
+          <button className="btn btn-warning m-2">test</button>
+          <button className="btn btn-warning m-2">test</button>
+          <button className="btn btn-warning m-2">test</button>
+          <button className="btn btn-warning m-2">test</button>
+          <button className="btn btn-warning m-2">test</button>
+        </div>
+      </div>
+
+
+
+
+      <h3 className="text-center">Previous results</h3>
       {/* chart test */}
       <div>
       <Pie
