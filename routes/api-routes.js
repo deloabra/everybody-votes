@@ -12,6 +12,7 @@ const orm = require("../config/orm");
 //find question
 Router.get('/question/:questionId', (req, res) => {
     orm.getQuestionInfo(req.params.questionId, (result) => {
+        res.status(200);
         res.send(result);
     });
 });
@@ -22,10 +23,23 @@ Router.post('/api/createquestion', (req, res) => {
         res.status(201);
         res.send(result);
     });
-})
+});
 
+//find answer choice
+Router.get('/api/answerchoices/:questionId', (req, res) => {
+    orm.getAnswerChoice(req.params.questionId, (result) => {
+        res.status(200);
+        res.send(result);
+    });
+});
 
 //create answer choice
+Router.post('/api/createanswerchoice', (req, res) => {
+    orm.createAnswerChoice(req.body.questionId, req.body.choice, (result) => {
+        res.status(201);
+        res.send(result);
+    });
+});
 
 
 //create vote
