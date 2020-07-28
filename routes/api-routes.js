@@ -43,8 +43,24 @@ Router.post('/api/createanswerchoice', (req, res) => {
 
 
 //create vote
+Router.post('/api/createvote', (req, res) => {
+    //   0 (ZERO) parameter is a placeholder for the ip, which is not implemented yet
+    orm.createVote(req.body.questionId, 0, req.body.choice, (result) => {
+        res.status(201);
+        res.send(result);
+    });
+});
 
 
-//find vote
+//find all votes for a question
+Router.get("/api/getvotes/:questionId", (req, res) => {
+    orm.getVotesByQuestion(req.params.questionId, (result) => {
+        res.status(200);
+        res.send(result);
+    });
+});
+
+
+//TO DO - find a vote for a question AND ip - for when we only allow one vote per ip per question
 
 module.exports = Router;

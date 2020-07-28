@@ -25,6 +25,7 @@ CREATE TABLE vote(
 	id INT NOT NULL AUTO_INCREMENT,
     ip varchar(20),
     questionId INT NOT NULL,
+    choice INT NOT NULL,
     CreatedAt DATETIME DEFAULT current_timestamp,
     PRIMARY KEY(id)
 );
