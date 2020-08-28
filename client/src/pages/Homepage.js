@@ -1,34 +1,50 @@
 import React, { useState } from 'react';
 import './Homepage.css';
-import { Pie } from 'react-chartjs-2';
+//import { Pie } from 'react-chartjs-2';
 
 function Homepage() {
 
-  //state for chart
-  const [pieState, setPieState] = useState({
-    labels: ['January', 'February', 'March',
-           'April', 'May'],
-  datasets: [
-    {
-      label: 'Rainfall',
-      backgroundColor: [
-        '#B21F00',
-        '#C9DE00',
-        '#2FDE00',
-        '#00A6B4',
-        '#6800B4'
-      ],
-      hoverBackgroundColor: [
-      '#501800',
-      '#4B5000',
-      '#175000',
-      '#003350',
-      '#35014F'
-      ],
-      data: [65, 59, 80, 81, 56]
+  const [question, setQuestion] = useState("");
+  const [answerChoices, setAnswerChoices] = useState(["", ""]);
+
+  const handleQuestionChange = event => {
+    event.preventDefault();
+
+    setQuestion(event.target.value);
+  }
+
+  const handleAnswerChange = event => {
+    event.preventDefault();
+
+    let temp = [...answerChoices];
+    temp[event.target.dataset.id] = event.target.value;
+
+    setAnswerChoices(temp);
+  }
+
+  const deleteAnswerChoice = event => {
+    event.preventDefault();
+
+    let temp = [...answerChoices];
+    temp.splice(event.target.dataset.id, 1);
+
+    setAnswerChoices(temp);
+  }
+
+  const addAnswerChoice = event => {
+    event.preventDefault();
+    let temp = [...answerChoices];
+    temp.push("");
+    setAnswerChoices(temp);
+  }
+
+  const handleSubmit = () => {
+    //make sure there is a question
+    if(question.length === 0){
+      alert("Please add a question to create a poll.");
+      return;
     }
-  ]
-  });
+  }
 
 
   return (
@@ -59,58 +75,35 @@ function Homepage() {
         </div>
       </nav>
 
+    <div className="container justify-content-center">
+      <h3>Question</h3>
 
+      <input
+      value={question}
+      onChange={handleQuestionChange}
+      ></input>
 
+      {/* Create answer choices */}
 
+      <h3>Answer Choices</h3>
 
-                    {/* Today's Question */}
-
-
-
-      <h2 className="text-center">Today's Question</h2>
-
-      {/* text in here needs to be decided by api call */}
-      <h3 className="text-center">Is a hotdog a sandwich?</h3>
-
-      {/* container for button answer choices */}
-      <div className="container">
-        <div className="row justify-content-center">
-          <button className="btn btn-warning m-2">test</button>
-          <button className="btn btn-warning m-2">test</button>
-          <button className="btn btn-warning m-2">test</button>
-          <button className="btn btn-warning m-2">test</button>
-          <button className="btn btn-warning m-2">test</button>
-          <button className="btn btn-warning m-2">test</button>
-          <button className="btn btn-warning m-2">test</button>
-          <button className="btn btn-warning m-2">test</button>
-          <button className="btn btn-warning m-2">test</button>
-          <button className="btn btn-warning m-2">test</button>
+      {answerChoices.map((choice, index) => (
+        <div key={index} className="answerChoiceRow">
+          <input
+          data-id={index}
+          value={choice}
+          placeholder={"Answer Choice " + (index + 1)}
+          onChange={handleAnswerChange}>
+          </input>
+          <button className="answerChoiceDelete btn btn-danger" data-id={index} onClick={deleteAnswerChoice}><span data-id={index} className="fas fa-times"/></button>
         </div>
-      </div>
+      ))}
 
+      <button className="addAnswerChoice btn btn-success" onClick={addAnswerChoice}>Add another answer choice</button>
 
+      <button className="submitQuestion btn btn-warning" onClick={handleSubmit}>Create Poll</button>
 
-
-      <h3 className="text-center">Previous results</h3>
-      {/* chart test */}
-      <div>
-      <Pie
-          data={pieState}
-          options={{
-            title:{
-              display:true,
-              text:'Average Rainfall per month',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        />
-      </div>
-
-
+    </div>
     </div>
   );
 }

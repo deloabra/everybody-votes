@@ -1,0 +1,13 @@
+.answerChoiceRow{
+    display: block;
+    margin-bottom: 20px;
+}
+
+.answerChoiceDelete{
+    margin-left: 5px
+}
+
+.addAnswerChoice{
+    display: block;
+    margin-bottom: 20px;
+}
