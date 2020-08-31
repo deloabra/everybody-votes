@@ -35,7 +35,7 @@ Router.get('/api/answerchoices/:questionId', (req, res) => {
 
 //create answer choice
 Router.post('/api/createanswerchoice', (req, res) => {
-    orm.createAnswerChoice(req.body.questionId, req.body.choice, (result) => {
+    orm.createAnswerChoice(req.body.questionId, req.body.choiceNum, req.body.choice, (result) => {
         res.status(201);
         res.send(result);
     });

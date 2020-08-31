@@ -5,9 +5,9 @@ USE everybody_votes;
 
 CREATE TABLE question(
 	id INT NOT NULL AUTO_INCREMENT,
-    url VARCHAR(100),
+    questionurl VARCHAR(100),
     question VARCHAR(500),
-    private BOOLEAN,
+    isprivate BOOLEAN,
     creator varchar(20),
     CreatedAt DATETIME DEFAULT current_timestamp,
     ExpiresAt DATETIME DEFAULT NULL,
@@ -17,6 +17,7 @@ CREATE TABLE question(
 CREATE TABLE answerchoice(
     id INT NOT NULL AUTO_INCREMENT,
     questionId INT NOT NULL,
+    choiceNum INT NOT NULL,
     choice varchar(200),
     primary key(id)
 );

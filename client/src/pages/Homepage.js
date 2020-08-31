@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import API from "../utils/API";
 import './Homepage.css';
 //import { Pie } from 'react-chartjs-2';
 
@@ -38,12 +39,52 @@ function Homepage() {
     setAnswerChoices(temp);
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async function(){
     //make sure there is a question
     if(question.length === 0){
       alert("Please add a question to create a poll.");
       return;
     }
+
+    if(answerChoices.length < 2){
+      alert("There must be at least 2 answer choices for this to be a poll.");
+      return;
+    }
+
+    for(let i = 0; i < answerChoices.length; i++){
+      if(answerChoices[i] === ""){
+        alert("Make sure that no answer choices are blank.");
+        return;
+      }
+    }
+
+    //after everything is checked out
+    console.log("saving question");
+
+    const questionBody = {
+      question: question
+    };
+
+    const questionData = await API.createQuestion(questionBody);
+
+    const questionId = questionData.data.insertId;
+
+    console.log(questionId + " -- " + typeof questionId);
+
+    console.log("question saved");
+
+    console.log("saving answer choices");
+
+    for(let i = 0; i < answerChoices.length; i++){
+      let choiceBody = {
+        questionId: questionId,
+        choiceNum: i,
+        choice: answerChoices[i]
+      };
+      await API.createAnswerChoice(choiceBody);
+    }
+
+    console.log("saved all answer choices");
   }
 
 

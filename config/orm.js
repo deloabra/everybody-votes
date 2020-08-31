@@ -31,9 +31,9 @@ var orm = {
         });
     },
 
-    createAnswerChoice: function(questionId, choice, cb){
-        var queryString = "INSERT INTO answerchoice (questionId, choice) VALUES (?, ?)";
-        connection.query(queryString, [questionId, choice], (err, res) => {
+    createAnswerChoice: function(questionId, choiceNum, choice, cb){
+        var queryString = "INSERT INTO answerchoice (questionId, choiceNum, choice) VALUES (?, ?, ?)";
+        connection.query(queryString, [questionId, choiceNum, choice], (err, res) => {
             if(err){
                 throw err;
             }
