@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./items/Header";
 import Homepage from "./pages/Homepage";
 import PollForm from "./pages/PollForm";
+import PollRes from "./pages/PollRes"
 
 function MainContentContainer(){
 
@@ -19,6 +20,8 @@ function MainContentContainer(){
                 <Switch>
 
                     <Route exact path="/create" component={PollForm} />
+
+                    <Route path="/results/" component={PollRes}/>
 
                     <Route component={Homepage} />
 

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import API from "../utils/API";
 
 function Homepage(){
 
     const [idQuery, setIdQuery] = useState("");
+    const [redirect, setRedirect] = useState("");
 
     const handleIdInputChange = event => {
         event.preventDefault();
@@ -21,12 +22,14 @@ function Homepage(){
             setIdQuery("");
             return;
         }
-
-        console.log(data.data[0].question);
+        console.log(data.data[0].id);
+        setRedirect(data.data[0].id);
     };
 
     return(
         <div>
+
+            {redirect ? <Redirect to={`/results/${redirect}`}/> : ""}
 
             <h1 className="text-center mt-4 mb-4">Welcome to Everybody Votes</h1>
 
