@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     getQuestion: function(questionId) {
-        return axios.get("/question/:");
+        return axios.get(`/question/${questionId}`);
     },
 
     createQuestion: async function(body) {
