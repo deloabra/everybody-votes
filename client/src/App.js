@@ -1,9 +1,9 @@
 import React from 'react';
-import Homepage from "./pages/Homepage"
+import MainContainer from "./MainContainer";
 
 function App(){
     return(
-        <Homepage/>
+        <MainContainer/>
     );
 }
 
