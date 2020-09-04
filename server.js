@@ -13,9 +13,9 @@ app.use(express.json());
 
 //static assets
 //server doesn't give react page if not in production
-// if (process.env.NODE_ENV === "production") {
-//     app.use(express.static("/client/build"));
-// }
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("/client/build"));
+}
 
 //require routes
 app.use(routes);
