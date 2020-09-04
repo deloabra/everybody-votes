@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from "react-router-dom"
 import API from "../utils/API";
 import './PollForm.css';
 //import { Pie } from 'react-chartjs-2';
@@ -7,6 +8,7 @@ function PollForm() {
 
   const [question, setQuestion] = useState("");
   const [answerChoices, setAnswerChoices] = useState(["", ""]);
+  const [redirect, setRedirect] = useState("");
 
   const handleQuestionChange = event => {
     event.preventDefault();
@@ -86,11 +88,19 @@ function PollForm() {
     }
 
     console.log("saved all answer choices");
+
+    alert("Question Created. Question id is " + questionId);
+    setQuestion("");
+    setAnswerChoices(["", ""]);
+    setRedirect(questionId);
+
   }
 
 
   return (
     <div className="App">
+
+    {redirect ? <Redirect to={`/results/${redirect}`}/> : ""}
 
 
     <div className="container justify-content-center">
