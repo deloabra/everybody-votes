@@ -19,5 +19,9 @@ export default {
 
     getVotes: async function(questionId){
         return await axios.get(`/api/getvotes/${questionId}`);
+    },
+
+    createVote: async function(body){
+        return await axios.post("/api/createvote", body);
     }
 };
