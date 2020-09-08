@@ -8,7 +8,7 @@ import PollRes from "./pages/PollRes"
 
 function MainContentContainer(){
 
-    const [userIp, setUserIp] = useState();
+    const [userIp, setUserIp] = useState("");
 
     const ip = require('ip');
 

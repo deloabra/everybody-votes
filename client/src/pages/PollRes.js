@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Redirect } from "react-router-dom";
 import API from "../utils/API";
 
 function PollRes({userIp}) {
@@ -11,6 +11,7 @@ function PollRes({userIp}) {
     const [voteData, setVoteData] = useState();
     const [selectedAnswer, setSelectedAnswer] = useState();
     const [parsedVotes, setParsedVotes] = useState();
+    const [redirect, setRedirect] = useState("");
 
     const location = useLocation();
     const questionId = location.pathname.substring(location.pathname.indexOf("results/") + 8);
@@ -20,22 +21,30 @@ function PollRes({userIp}) {
         //location.pathname is /results/{id} and we want id
         //8 is length of results/ and we want the number after
 
+        let mounted = true;
+
         API.getQuestion(questionId)
             .then(result => {
                 setQuestionData(result.data[0]);
+                if(result.data[0] === undefined){
+                    mounted = false;
+                    setRedirect("/");
+                }
             });
 
         API.getAnswerChoices(questionId)
             .then(result => {
-                setAnswerData(result.data);
+                if(mounted){
+                    setAnswerData(result.data);
+                }
             });
 
+        return () => mounted = false;
 
     }, []);
 
     //run when question or answerData get retrieved
     useEffect(() => {
-
         //do nothing if both questionData and answerData aren't loaded
         if(questionData === undefined || answerData === undefined){
             return;
@@ -97,6 +106,7 @@ function PollRes({userIp}) {
     if(((questionData === undefined || answerData === undefined) && showResults === false) || (showResults === true && (voteData === undefined || parsedVotes === undefined)) || castingVote){
         return(
             <div>
+                {redirect ? <Redirect to={"/"} />: ""}
                 <h1 className="text-center mt-5">Loading</h1>
             </div>
         );
@@ -163,7 +173,6 @@ function parseVotes(voteData, answerData){
     for(let i = 0; i < voteData.length; i++){
         voteCounter[voteData[i].choice -1]++;
     }
-    console.log(voteCounter);
     return voteCounter;
 }
 
