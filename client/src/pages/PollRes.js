@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import API from "../utils/API";
 
-function PollRes() {
+function PollRes({userIp}) {
 
     const [showResults, setShowResults] = useState(false);
     const [castingVote, setCastingVote] = useState(false);
@@ -40,9 +40,6 @@ function PollRes() {
         if(questionData === undefined || answerData === undefined){
             return;
         }
-
-        console.log(questionData);
-        console.log(answerData);
     }, [questionData, answerData]);
 
     //run when we move to results section to get votes
@@ -80,6 +77,7 @@ function PollRes() {
         API.createVote(
             {
                 questionId: questionId,
+                userIp: userIp,
                 choice: selectedAnswer
             }
         )

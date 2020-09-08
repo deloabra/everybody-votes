@@ -45,7 +45,7 @@ Router.post('/api/createanswerchoice', (req, res) => {
 //create vote
 Router.post('/api/createvote', (req, res) => {
     //   0 (ZERO) parameter is a placeholder for the ip, which is not implemented yet
-    orm.createVote(req.body.questionId, 0, req.body.choice, (result) => {
+    orm.createVote(req.body.questionId, req.body.userIp, req.body.choice, (result) => {
         res.status(201);
         res.send(result);
     });

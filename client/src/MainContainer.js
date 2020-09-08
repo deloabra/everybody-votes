@@ -8,7 +8,13 @@ import PollRes from "./pages/PollRes"
 
 function MainContentContainer(){
 
+    const [userIp, setUserIp] = useState();
 
+    const ip = require('ip');
+
+    useEffect(() => {
+        setUserIp(ip.address());
+    });
 
     return(
         <div>
@@ -21,7 +27,12 @@ function MainContentContainer(){
 
                     <Route exact path="/create" component={PollForm} />
 
-                    <Route path="/results/" component={PollRes}/>
+                    <Route path="/results/" render={(props) => (
+                        <PollRes
+                            {...props}
+                            userIp={userIp}
+                        />
+                    )}/>
 
                     <Route component={Homepage} />
 
