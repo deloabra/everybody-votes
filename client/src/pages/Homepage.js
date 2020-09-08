@@ -22,7 +22,6 @@ function Homepage(){
             setIdQuery("");
             return;
         }
-        console.log(data.data[0].id);
         setRedirect(data.data[0].id);
     };
 
