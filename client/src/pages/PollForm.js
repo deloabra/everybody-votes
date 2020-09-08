@@ -43,7 +43,6 @@ function PollForm() {
 
   const handleSubmit = async function(){
 
-    console.log(window.location.href);
     //make sure there is a question
     if(question.length === 0){
       alert("Please add a question to create a poll.");
@@ -72,12 +71,6 @@ function PollForm() {
 
     const questionId = questionData.data.insertId;
 
-    console.log(questionId + " -- " + typeof questionId);
-
-    console.log("question saved");
-
-    console.log("saving answer choices");
-
     for(let i = 0; i < answerChoices.length; i++){
       let choiceBody = {
         questionId: questionId,
@@ -87,7 +80,6 @@ function PollForm() {
       await API.createAnswerChoice(choiceBody);
     }
 
-    console.log("saved all answer choices");
 
     alert("Question Created. Question id is " + questionId);
     setQuestion("");
