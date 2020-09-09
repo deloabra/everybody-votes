@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "12.14.x",
-    "npm": "6.13.x"
+    "node": "13.8.0",
+    "npm": "6.13.7"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
