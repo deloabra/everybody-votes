@@ -95,33 +95,46 @@ function PollForm() {
     {redirect ? <Redirect to={`/results/${redirect}`}/> : ""}
 
 
-    <div className="container justify-content-center">
-      <h3>Question</h3>
+    <div className="container">
 
-      <input
-      value={question}
-      onChange={handleQuestionChange}
-      ></input>
+      <h3 className="text-center">Question</h3>
+
+      <div className="row justify-content-center mb-5">
+        <textarea
+        value={question}
+        onChange={handleQuestionChange}
+        placeholder="Enter Question Here"
+        style={{width: 80 + "%"}}
+        >
+        </textarea>
+      </div>
 
       {/* Create answer choices */}
 
-      <h3>Answer Choices</h3>
+      <h3 className="text-center">Answer Choices</h3>
 
       {answerChoices.map((choice, index) => (
-        <div key={index} className="answerChoiceRow">
-          <input
-          data-id={index}
-          value={choice}
-          placeholder={"Answer Choice " + (index + 1)}
-          onChange={handleAnswerChange}>
-          </input>
-          <button className="answerChoiceDelete btn btn-danger" data-id={index} onClick={deleteAnswerChoice}><span data-id={index} className="fas fa-times"/></button>
+        <div key={index} className="row justify-content-center">
+          <div className="answerChoiceRow">
+            <input
+            className="answerChoiceInput"
+            data-id={index}
+            value={choice}
+            placeholder={"Answer Choice " + (index + 1)}
+            onChange={handleAnswerChange}>
+            </input>
+            <button className="answerChoiceDelete btn btn-danger" data-id={index} onClick={deleteAnswerChoice}><span data-id={index} className="fas fa-times"/></button>
+          </div>
         </div>
       ))}
 
-      <button className="addAnswerChoice btn btn-success" onClick={addAnswerChoice}>Add another answer choice</button>
+      <div className="row justify-content-center mt-3">
+        <button className="addAnswerChoice btn btn-success" onClick={addAnswerChoice}>Add another answer choice</button>
+      </div>
 
-      <button className="submitQuestion btn btn-warning" onClick={handleSubmit}>Create Poll</button>
+      <div className="row justify-content-center mt-3">
+        <button className="submitQuestion btn btn-warning" onClick={handleSubmit}>Create Poll</button>
+      </div>
 
     </div>
     </div>
