@@ -156,7 +156,19 @@ function PollRes({userIp}) {
             {answerData.map((choice, index) => (
                 <div key={index} className="row justify-content-center">
                     <div className="col-8">
-                        <h5>{`${choice.choice} -- ${parsedVotes[index]}`}</h5>
+                        <h5>{choice.choice}</h5>
+
+                        {/* bar illustrating voting percentage for the answer choice */}
+                        <div className="mb-5">
+                            <div className="progress">
+                                <div className="progress-bar" role="progressbar" aria-valuenow={Math.round(parsedVotes[index] / voteData.length * 100)}
+                                aria-valuemin="0" aria-valuemax="100" style={{width: Math.round(parsedVotes[index] / voteData.length * 100) + "%"}}>
+                                    {Math.round(parsedVotes[index] / voteData.length * 100)}%
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             ))}
