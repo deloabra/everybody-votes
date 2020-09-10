@@ -21,7 +21,7 @@ function MainContentContainer(){
             <Router>
 
                 {/* Header unused for now */}
-                {/* <Header/> */}
+                <Header/>
 
                 <Switch>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, Redirect } from "react-router-dom";
+import { useLocation, Redirect } from "react-router-dom";
 import API from "../utils/API";
 
 function PollRes({userIp}) {

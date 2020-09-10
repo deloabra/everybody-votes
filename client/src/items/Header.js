@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Header(){
     return(
@@ -7,10 +8,12 @@ function Header(){
             </header>
 
             {/* navbar */}
-            <nav className="navbar navbar-expand-lg navbar-light bg-warning">
+            <nav className="navbar navbar-expand-lg navbar-light">
 
                 {/* Add Home link to website name on navbar */}
-                <a className="navbar-brand" href="index.html">Everbody Votes</a>
+                <Link to="/">
+                    <a className="navbar-brand">Everybody Votes</a>
+                </Link>
 
                 {/* create navbar toggler icon for small screens */}
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +26,7 @@ function Header(){
 
                         {/* create new list elements like this to add more links to navbar */}
                         <li className="nav-item active">
-                            <a className="nav-link" href="index.html">test</a>
+                            {/* Add list items here */}
                         </li>
                     </ul>
                 </div>
