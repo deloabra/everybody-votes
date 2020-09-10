@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, Redirect } from "react-router-dom";
 import API from "../utils/API";
 
-function PollRes({userIp}) {
+function PollRes() {
 
     const [showResults, setShowResults] = useState(false);
     const [castingVote, setCastingVote] = useState(false);
@@ -38,6 +38,17 @@ function PollRes({userIp}) {
                     setAnswerData(result.data);
                 }
             });
+
+        // Check Local Storage to see if they can vote or just see results
+        if(localStorage.everybodyVotesTracker){
+            let localTemp = JSON.parse(localStorage.everybodyVotesTracker);
+            if(arrayContains(localTemp, questionId)){
+                setShowResults(true);
+            }
+        }
+        else{
+            localStorage.everybodyVotesTracker = JSON.stringify([]);
+        }
 
         return () => mounted = false;
 
@@ -86,13 +97,17 @@ function PollRes({userIp}) {
         API.createVote(
             {
                 questionId: questionId,
-                userIp: userIp,
                 choice: selectedAnswer
             }
         )
             .then(() => {
                 setShowResults(true);
             });
+
+        //add questionId to localstorage so they can't vote again
+        let localTemp = JSON.parse(localStorage.everybodyVotesTracker);
+        localTemp.push(parseInt(questionId));
+        localStorage.everybodyVotesTracker = JSON.stringify(localTemp);
     }
 
     const handleViewResults = event => {
@@ -186,6 +201,16 @@ function parseVotes(voteData, answerData){
         voteCounter[voteData[i].choice -1]++;
     }
     return voteCounter;
+}
+
+function arrayContains(arr, value){
+    let contains = false;
+    for(let i in arr){
+        if(i === value){
+            contains = true;
+        }
+    }
+    return contains;
 }
 
 export default PollRes;

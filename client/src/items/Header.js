@@ -12,7 +12,7 @@ function Header(){
 
                 {/* Add Home link to website name on navbar */}
                 <Link to="/">
-                    <a className="navbar-brand">Everybody Votes</a>
+                    <p className="navbar-brand">Everybody Votes</p>
                 </Link>
 
                 {/* create navbar toggler icon for small screens */}
